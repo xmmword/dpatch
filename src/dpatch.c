@@ -153,7 +153,7 @@ bool uninstall_table_hook(const int entry) {
   if (entry < 0 || entry > NR_syscalls)
     return false;
 
-  sys_call_ptr_t *original_syscall_table = dpatch_ctx.kallsyms_lookup_name("sys_call_table");
+  sys_call_ptr_t *original_syscall_table = (sys_call_ptr_t *)dpatch_ctx.kallsyms_lookup_name("sys_call_table");
   if (!original_syscall_table)
     return false;
 

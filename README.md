@@ -7,7 +7,7 @@ An x64 PoC kernel driver that hooks system calls via patching the Linux system c
 
 ## Description
 `dpatch` is a PoC kernel driver which patches the system call dispatcher for x64 Linux. It does this by first making a mutable/writeable copy of the 
-system call table, overwriting the function pointers in that table with the function pointers that point to the hook functions, and then patching the first several bytes of the dispatcher to make to jump to a custom system call handler. The custom handler will then index and invoke system calls (or hooks, the function pointer was patched) from the copied (writeable) table.
+system call table, overwriting the function pointers in that table with the function pointers that point to the hook functions, and then patching the first several bytes of the dispatcher to make it jump to a custom system call handler. The custom handler will then index and invoke system calls (or hooks, if the function pointer was overwritten) from the copied (writeable) table.
 
 ### Features
 - Patches kernel system call dispatcher

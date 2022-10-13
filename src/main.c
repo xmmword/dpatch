@@ -121,6 +121,8 @@ static void __exit dpatch_exit(void) {
   if (!uninstall_table_hook(__NR_uname))
     return;
 
+  dpatch_kern_log("Successfully unhooked [sys_uname]");
+
   /*
     Note: After several tests, I have been able to reduce the amount of crashes
           that occur via 'unpatching' the system call dispatcher, but there is
@@ -130,7 +132,7 @@ static void __exit dpatch_exit(void) {
   /* Please remember, this is just a PoC. */
 
   disable_memory_protection();
-  memcpy(dpatch_ctx.do_syscall_64, dpatch_ctx.bytes, sizeof(*(uint64_t *)dpatch_ctx.bytes));
+  memcpy(*(uint64_t *)dpatch_ctx.do_syscall_64, dpatch_ctx.bytes, sizeof(*(uint64_t *)dpatch_ctx.bytes));
 
   enable_memory_protection();
   dpatch_kern_log("dpatch driver has been unloaded!");

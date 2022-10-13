@@ -10,6 +10,7 @@ An x64 PoC Linux kernel driver that hooks system calls via patching the system c
 system call table, overwriting the function pointers in that table with the function pointers that point to the hook functions, and then patching the first several bytes of the dispatcher to make it jump to a custom system call handler. The custom handler will then index and invoke system calls (or hooks, if the function pointer was overwritten) from the copied (writeable) table.
 
 ### Features
+- Linux 5.15 - 6.0 Support
 - Patches kernel system call dispatcher
 - `sys_call_table` isn't touched or modified at all
 - Undetected by most, if not all public usermode/kernelmode rootkit scanners

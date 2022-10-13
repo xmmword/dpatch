@@ -80,7 +80,7 @@ typedef struct _dpatch_ctx {
 
 void __visible dpatch_kern_log(const char *message, ...);
 
-inline void write_to_cr0(const unsigned long val);
+inline void write_to_cr0(unsigned long val);
 uintptr_t return_symbol_address(const char *symbol);
 
 void enable_memory_protection(void);

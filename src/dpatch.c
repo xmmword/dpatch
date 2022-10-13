@@ -36,7 +36,7 @@ EXPORT_SYMBOL(dpatch_ctx); /* Exporting [dpatch_ctx] to make it accessible to 'm
  * @param val The data.
  */
 
-void write_to_cr0(const unsigned long val) {
+void write_to_cr0(unsigned long val) {
   asm volatile("mov %0, %%cr0":"+r"(val), "+m"((unsigned long){0}));
 }
 

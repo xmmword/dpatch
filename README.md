@@ -26,7 +26,7 @@ To compile `dpatch`, simply execute the following script:
 - `./build.sh`
 
 ### Usage
-- `insmod dpatch.ko`
+- `insmod dpatchdriver.ko`
 
 ## Credits
 ```

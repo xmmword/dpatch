@@ -1,5 +1,5 @@
 # dpatch
-An x64 PoC kernel driver that hooks system calls via patching the Linux system call dispatcher.
+An x64 PoC Linux kernel driver that hooks system calls via patching the system call dispatcher.
 
 <div align="center">
     <img src="https://user-images.githubusercontent.com/105472509/195727127-49de8c41-5af5-4b9a-af33-028735e21c98.PNG" width="700px"><br>

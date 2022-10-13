@@ -1,4 +1,4 @@
-# kutil
+# dpatch
 An x64 PoC kernel driver that hooks system calls via patching the Linux system call dispatcher.
 
 <div align="center">

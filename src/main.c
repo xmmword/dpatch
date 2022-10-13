@@ -118,7 +118,7 @@ static int __init dpatch_main(void) {
  */
 
 static void __exit dpatch_exit(void) {
-  if (!uninstall_table_hook(__NR_uname));
+  if (!uninstall_table_hook(__NR_uname))
     return;
 
   /*

@@ -10,6 +10,5 @@ find . -name "*.mod.c" -type f -delete
 find . -name "*.order" -type f -delete 
 find . -name "*.symvers" -type f -delete
 
-mv dpatchdriver.ko dpatch.ko
-mv dpatch.ko ..
+mv dpatchdriver.ko ..
 cd ..

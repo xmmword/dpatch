@@ -1,5 +1,5 @@
-obj-m += dpatchdrive.o
-dpatchdrive-objs := main.o dpatch.o
+obj-m += dpatchdriver.o
+dpatchdriver-objs := main.o dpatch.o
 ccflags-y := -std=gnu99 -Wno-declaration-after-statement -Wframe-larger-than=1596
 
 all:

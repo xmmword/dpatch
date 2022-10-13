@@ -1,8 +1,8 @@
 # kutil
-An x64 linux kernel driver loader and utility.
+An x64 PoC kernel driver that hooks system calls via patching the Linux system call dispatcher.
 
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/105472509/170844444-fda8b126-6b23-4bc3-a890-6836ffdcc4b3.png" width="700px"><br>
+    <img src="https://user-images.githubusercontent.com/105472509/195727127-49de8c41-5af5-4b9a-af33-028735e21c98.PNG" width="700px"><br>
 </div>
 
 ## Description

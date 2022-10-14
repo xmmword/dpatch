@@ -62,34 +62,34 @@ static int __init dpatch_main(void) {
 
   dpatch_ctx.kallsyms_lookup_name = (kallsyms_ptr_t)return_symbol_address("kallsyms_lookup_name");
   if (!dpatch_ctx.kallsyms_lookup_name)
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
 
   dpatch_kern_log("Resolved [kallsyms_lookup_name] @ 0x%lx", (uintptr_t)dpatch_ctx.kallsyms_lookup_name);
 
   if (!(dpatch_ctx.do_syscall_64 = (syscall_dispatcher_ptr_t)dpatch_ctx.kallsyms_lookup_name("do_syscall_64")))
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
 
   dpatch_kern_log("Resolved [do_syscall_64] @ 0x%lx", (uintptr_t)dpatch_ctx.do_syscall_64);
 
   if (!(dpatch_ctx.syscall_enter_from_user_mode = (syscall_enter_usermode_ptr_t)dpatch_ctx.kallsyms_lookup_name("syscall_enter_from_user_mode")))
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
 
   dpatch_kern_log("Resolved [syscall_enter_from_user_mode] @ 0x%lx", (uintptr_t)dpatch_ctx.syscall_enter_from_user_mode);
 
   if (!(dpatch_ctx.__x64_sys_ni_syscall = (sys_ni_ptr_t)dpatch_ctx.kallsyms_lookup_name("__x64_sys_ni_syscall")))
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
 
   dpatch_kern_log("Resolved [__x64_sys_ni_syscall] @ 0x%lx", (uintptr_t)dpatch_ctx.__x64_sys_ni_syscall);
 
   if (!(dpatch_ctx.syscall_exit_to_user_mode = (syscall_exit_usermode_ptr_t)dpatch_ctx.kallsyms_lookup_name("syscall_exit_to_user_mode")))
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
 
   dpatch_kern_log("Resolved [syscall_exit_to_user_mode] @ 0x%lx", (uintptr_t)dpatch_ctx.syscall_exit_to_user_mode);
 
   if (!(dpatch_ctx.syscall_table = return_syscall_table())) {
     dpatch_kern_log("Failed to copy [sys_call_table]!");
 
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
   }
 
   dpatch_kern_log("Copied the contents of [sys_call_table]");
@@ -98,7 +98,7 @@ static int __init dpatch_main(void) {
   if (!install_table_hook(hooked_uname, __NR_uname)) {
     dpatch_kern_log("Failed to overwrite [sys_uname] address!");
 
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
   }
 
   dpatch_kern_log("Successfully overwritten [sys_uname] address!");
@@ -106,7 +106,7 @@ static int __init dpatch_main(void) {
   if (dpatch_hook_dispatcher(hooked_syscall_dispatcher, dpatch_ctx.do_syscall_64) == DPATCH_HOOK_FAILURE) {
     dpatch_kern_log("Failed to patch [do_syscall_64]");
 
-    return KERN_SUCCESS;
+    return KERN_FAILURE;
   }
 
   dpatch_kern_log("Successfully patched [do_syscall_64]");
